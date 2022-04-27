@@ -11,6 +11,7 @@ namespace iTechArt.Surveys.WebApp.ViewModels
         public string Login { get; set; }
 
         [Required(ErrorMessage = "Password cannot be empty")]
+        [MinLength(8, ErrorMessage = "Password is too short")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Repeat password")]

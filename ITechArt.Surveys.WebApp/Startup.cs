@@ -40,6 +40,7 @@ namespace iTechArt.Surveys.WebApp
                     options.Password.RequireLowercase = true;
                     options.Password.RequireUppercase = true;
                     options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredLength = 8;
                 })
                 .AddRoleStore<RoleStore>()
                 .AddUserStore<UserStore>()
