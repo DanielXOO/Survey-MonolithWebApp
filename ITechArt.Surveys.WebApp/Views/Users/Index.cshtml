@@ -1,0 +1,91 @@
+﻿@using iTechArt.Common.Pagination
+@using Microsoft.AspNetCore.Http.Extensions
+@model iTechArt.Surveys.WebApp.ViewModels.PageResponseViewModel<iTechArt.Surveys.Foundation.Models.UserWithSurveysCount>
+
+<div id="content">
+    <table>
+        <tr>
+            <th colspan="3">
+            </th>
+            <th colspan="2">
+                <form asp-action="Index" asp-route-sortOrder="@Model.SortOrder">
+                    <input type="text" value="@Model.NameSearchTerm" name="nameSearchTerm"/>
+                    <button type="submit">search</button>
+                </form>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @if (Model.SortOrder == SortOrder.Descending)
+                {
+                    <a asp-controller="Users" asp-action="Index" asp-route-page="@Model.Items.CurrentPage"
+                       asp-route-nameSearchTerm="@Model.NameSearchTerm" asp-route-sortOrder="@SortOrder.Ascending">
+                        <img src="~/images/up_black_24dp.svg" /> Name
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Users" asp-action="Index" asp-route-page="@Model.Items.CurrentPage"
+                       asp-route-nameSearchTerm="@Model.NameSearchTerm" asp-route-sortOrder="@SortOrder.Descending">
+                        <img src="~/images/down_black_24dp.svg" width="auto" /> Name
+                    </a>
+                }
+            </th>
+            <th>Role</th>
+            <th>Registration date</th>
+            <th>Surveys</th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model.Items.Items)
+        {
+            <tr>
+                <td>@item.User.DisplayName</td>
+                <td>@string.Join(", ",@item.User.Roles.Select(role => role.Name))</td>
+                <td>@item.User.CreationTime.ToShortDateString()</td>
+                <td>@item.SurveysCount</td>
+                @if (item.User.UserName != @User.Identity?.Name)
+                {
+                    <td>
+                        <a asp-controller="Users" asp-action="DeleteUser" asp-route-Id="@item.User.Id" 
+                           asp-route-ReturnUrl="@Context.Request.GetEncodedPathAndQuery()"
+                           asp-route-UserName="@item.User.UserName">
+                            <img src="~/images/delete_black_24dp.svg"/>
+                        </a>
+                        <a asp-controller="Users" asp-action="EditUser" asp-route-Id="@item.User.Id"
+                           asp-route-ReturnUrl="@Context.Request.GetEncodedPathAndQuery()"
+                           asp-route-Name="@item.User.DisplayName">
+                            <img src="~/images/edit_black_24dp.svg"/>
+                        </a>
+                    </td>
+                }
+            </tr>
+        }
+
+        <tr id="control">
+            <td colspan="3">Total users: @Model.Items.TotalItems</td>
+            <td>
+                @if (Model.Items.HasPrevious)
+                {
+                    <a asp-controller="Users" asp-action="Index" 
+                       asp-route-page="@(Model.Items.CurrentPage - 1)"
+                       asp-route-nameSearchTerm="@Model.NameSearchTerm"
+                       asp-route-sortOrder="@Model.SortOrder">
+                        &#60;&#60;&#60;
+                    </a>
+                }
+            </td>
+            <td>
+                @if (Model.Items.HasNext)
+                {
+                    <a asp-controller="Users" asp-action="Index"
+                       asp-route-page="@(Model.Items.CurrentPage + 1)" 
+                       asp-route-nameSearchTerm="@Model.NameSearchTerm"
+                       asp-route-sortOrder="@Model.SortOrder">
+                        &#62;&#62;&#62;
+                    </a>
+                }
+            </td>
+        </tr>
+    </table>
+</div>

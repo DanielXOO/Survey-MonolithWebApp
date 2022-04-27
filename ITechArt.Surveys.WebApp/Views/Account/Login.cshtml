@@ -1,0 +1,26 @@
+﻿@model iTechArt.Surveys.WebApp.ViewModels.UserLoginViewModel
+
+<main>
+    <div id="form">
+        <div id="form_logo">
+            <img src="~/images/logo_iTechArt.svg" height="50px"/>
+        </div>
+
+        <div class="errors" asp-validation-summary="All"></div>
+
+        <form asp-controller="Account" asp-action="Login">
+            <div class="form_field">
+                <input asp-for="Login" type="text" class = "input_form", placeholder = "Login"/>
+            </div>
+            <div class="form_field">
+                <input asp-for="Password" type="password" class = "input_form", placeholder = "Password"/>
+            </div>
+            <div class="form_field">
+                <button class="post_form">Sign In</button>
+            </div>
+            <div class="form_field">
+                <a class="link" asp-action="Registration" asp-controller="Account">Sign Up</a>
+            </div>
+        </form>
+    </div>
+</main>

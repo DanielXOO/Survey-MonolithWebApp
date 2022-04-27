@@ -1,0 +1,119 @@
+@using iTechArt.Surveys.DomainModel
+@model iTechArt.Surveys.WebApp.ViewModels.SurveyAddOrEditViewModel
+
+<div id="survey">
+    <div class="errors" asp-validation-summary="All"></div>
+    <input class="survey-field input_form" id="survey-name" value="@Model.Name" type="text"/>
+    <div id="questions-container">
+        <script>
+            const survey = JSON.parse('@Json.Serialize(Model)');
+            const type = ['text', 'radio', 'checkbox'];
+            survey.questions.forEach(question =>{
+                $(`#questions-container`).append(`
+                    <div class="question-card">
+                    <input type="text" value="${question.title}" class="question-title input_form">
+                    <div class="question-body"></div>
+                    <input type="button" class="delete-question action-button survey-control survey-field" 
+                           value="Delete question">
+                    </div>
+                `);
+                
+                let layout;
+                                
+                switch (question.type) {
+                    case @((int) QuestionType.Radio):
+                        layout = GenerateOptions(question.options, question.type);
+                        break;
+                    case @((int) QuestionType.Checkbox):
+                        layout = GenerateOptions(question.options, question.type)
+                        break;
+                    case @((int) QuestionType.Text):
+                        layout = `
+                            <input type="hidden" class="type" value="text">
+                            `;
+                        break;
+                    case @((int) QuestionType.File):
+                        layout = `
+                                <input type="hidden" class="type" value="file"> `;
+                        break;
+                    case @((int) QuestionType.Rate):
+                        layout = `
+                                <input type="hidden" class="type" value="rate"> `;
+                        break;
+                    case @((int) QuestionType.Scale):
+                        layout = `
+                                <input type="hidden" class="type" value="range"> `;
+                        break;
+                    default:
+                        alert(`No such question type`);
+                }
+                $(`.question-body`).last().html(layout);
+            });
+            
+            function GenerateOptions(options, questionType){
+                let questionCard = `
+                    <div class="options">
+                    <p style="font-weight: bolder">Options</p>`;
+                
+                options.forEach(answer => {
+                    questionCard += `
+                        <input type="text" value="${answer}" class="survey-field input_form answer-option" 
+                            placeholder="Answer option">`
+                });
+                
+                questionCard += `
+                    </div>
+                    <input type="hidden" class="type" value="${type[questionType]}">
+                    <input type="button" class="action-button survey-control survey-field" 
+                        id="add-option" value="Add option">
+                `;
+                
+                return questionCard;
+            }
+        </script>
+    </div>
+    <input type="button" class="action-button survey-control survey-field" id="add-question" value="Add Question"/>
+    <button id="submit-survey" class="action-button survey-control survey-field" type="button">Submit</button>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/AddOrEditSurvey.js"></script>
+    <script>
+            $(`#submit-survey`).on(`click`,
+                async () => {
+                    const survey = {
+                        id : '@Model.Id',
+                        name: $(`#survey-name`).val(),
+                        questions: $(`.question-card`).map(function () {
+                            return {
+                                title: $(this).find(`.question-title`).val(),
+                                options: $(this).find(`.answer-option`).map(function (){
+                                    return $(this).val();
+                                }).get(),
+                                type:questionType[$(this).find(`.type`).val()]
+                            }
+                        }).get()
+                    };
+                    
+                    await fetch(`@Url.Action("EditConfirm")`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json; charset=utf-8',
+                            'Content-Type': 'application/json;charset=UTF-8'
+                        },
+                        body: JSON.stringify(survey)
+                    }).then((response) =>{
+                        if (response.status > 399){
+                         alert("Error")
+                        }
+                        else
+                        {
+                            window.location = `@Url.Action("Index", "Surveys")`;
+                        }
+                    });
+                }
+            );
+    </script>   
+}

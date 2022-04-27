@@ -1,0 +1,93 @@
+﻿@using iTechArt.Common.Pagination
+@using Microsoft.AspNetCore.Http.Extensions
+@model iTechArt.Surveys.WebApp.ViewModels.PageResponseViewModel<iTechArt.Surveys.WebApp.ViewModels.SurveyWithLinksViewModel>
+
+<div id="content">
+    <table>
+        <tr>
+            <th colspan="3">
+            </th>
+            <th colspan="3">
+            <form asp-action="Index" asp-route-sortOrder="@Model.SortOrder">
+                <input type="text" value="@Model.NameSearchTerm" name="nameSearchTerm"/>
+                <button type="submit">search</button>
+            </form>
+        </tr>
+        <tr>
+            <th>
+                @if (Model.SortOrder == SortOrder.Descending)
+                {
+                    <a asp-controller="Surveys" asp-action="Index" asp-route-page="@Model.Items.CurrentPage"
+                       asp-route-nameSearchTerm="@Model.NameSearchTerm" asp-route-sortOrder="@SortOrder.Ascending">
+                        <img src="~/images/up_black_24dp.svg"/> Name
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Surveys" asp-action="Index" asp-route-page="@Model.Items.CurrentPage"
+                       asp-route-nameSearchTerm="@Model.NameSearchTerm" asp-route-sortOrder="@SortOrder.Descending">
+                        <img src="~/images/down_black_24dp.svg" width="auto"/> Name
+                    </a>
+                }
+            </th>
+            <th>Changed</th>
+            <th>Answers count</th>
+            <th>Link</th>
+            <th>Results</th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model.Items.Items)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.UpdateDate.ToShortDateString()</td>
+                <td>0</td>
+                <td>
+                    <a href="@item.SurveyLink">Link</a>
+                </td>
+                <td>
+                    <a href="@item.ResultsLink">Result</a>
+                </td>
+                <td>
+                    <a asp-controller="Surveys" asp-action="DeleteSurvey" asp-route-id="@item.SurveyId" 
+                       asp-route-name="@item.Name" asp-route-ReturnUrl="@Context.Request.GetEncodedPathAndQuery()">
+                        <img src="~/images/delete_black_24dp.svg"/>
+                    </a>
+                    <a asp-controller="Surveys" asp-action="EditSurvey" asp-route-surveyId="@item.SurveyId">
+                        <img src="~/images/edit_black_24dp.svg"/>
+                    </a>
+                </td>
+            </tr>
+        }
+
+        <tr id="control">
+            <td colspan="2">Total surveys: @Model.Items.TotalItems</td>
+            <td>
+                <a asp-controller="Surveys" asp-action="AddSurvey">Add Survey</a>
+            </td>
+            <td>
+                @if (Model.Items.HasPrevious)
+                {
+                    <a asp-controller="Surveys" asp-action="Index"
+                       asp-route-page="@(Model.Items.CurrentPage - 1)"
+                       asp-route-nameSearchTerm="@Model.NameSearchTerm"
+                       asp-route-sortOrder="@Model.SortOrder">
+                        &#60;&#60;&#60;
+                    </a>
+                }
+            </td>
+            <td>
+                @if (Model.Items.HasNext)
+                {
+                    <a asp-controller="Surveys" asp-action="Index"
+                       asp-route-page="@(Model.Items.CurrentPage + 1)"
+                       asp-route-nameSearchTerm="@Model.NameSearchTerm"
+                       asp-route-sortOrder="@Model.SortOrder">
+                        &#62;&#62;&#62;
+                    </a>
+                }
+            </td>
+        </tr>
+    </table>
+</div>

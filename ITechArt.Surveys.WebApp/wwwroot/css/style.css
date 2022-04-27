@@ -1,0 +1,411 @@
+﻿body {
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 4vh;
+    max-height: 7vh;
+    width: 100%;
+    border-bottom: 3px solid red;
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 20%;
+    margin-left: 5%;
+}
+
+#menu {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 80%;
+}
+
+    #menu a {
+        padding: 15px;
+        font-weight: 900;
+        font-size: large;
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+    #menu span {
+        padding: 15px;
+        font-weight: bold;
+        font-size: large;
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 10px - 8vh);
+    margin-top: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100px;
+    height: 40%;
+}
+
+.form_field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+#form_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input_form {
+    height: 25px;
+    width: 250px;
+    border-radius: 10px;
+    border: 2px solid red;
+}
+
+.post_form {
+    background-color: black;
+    border: none;
+    width: 160px;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 800;
+    font-size: 15px
+}
+
+    .post_form:hover {
+        background-color: red;
+    }
+
+.errors {
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    min-height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+    .errors li {
+        list-style-type: none;
+    }
+
+    .errors ul {
+        padding-left: 0;
+        text-align: center
+    }
+
+.link {
+    color: red;
+    font-weight: 200;
+    font-size: 15px;
+}
+
+    .link:hover {
+        color: black
+    }
+
+#side-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+    border-right: 3px solid red;
+}
+
+    #side-menu a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+.side-menu-pos {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+    #content table {
+        text-align: center;
+        border: 3px solid red;
+        border-collapse: collapse;
+        width: 20%;
+    }
+
+        #content table #control {
+            text-align: left;
+            border-top: solid red;
+        }
+
+    #content th {
+        background-color: red;
+        color: white;
+        font-weight: 800;
+    }
+
+    #content td {
+        font-weight: bold;
+    }
+
+        #content td a {
+            color: inherit;
+            text-decoration: inherit;
+        }
+
+    #content th, td {
+        padding: 30px;
+    }
+    
+
+.submit-button {
+    background-color: red;
+    border: none;
+    width: 160px;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 800;
+    font-size: 15px
+}
+
+.discard-button {
+    background-color: black;
+    border: none;
+    width: 160px;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 800;
+    font-size: 15px
+}
+
+.attention-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.title {
+    font-size: large;
+    font-weight: 900;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+    #content table {
+        text-align: center;
+        border: 3px solid red;
+        border-collapse: collapse;
+        width: 80%;
+    }
+
+        #content table #control {
+            text-align: left;
+            border-top: solid red;
+        }
+
+        #content table form {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            min-width: 100px;
+            height: 40%;
+        }
+
+    #content th {
+        background-color: red;
+        color: white;
+        font-weight: 800;
+    }
+
+        #content th a {
+            color: inherit;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-decoration: inherit;
+        }
+
+    #content td {
+        font-weight: bold;
+    }
+
+        #content td a {
+            color: inherit;
+            text-decoration: inherit;
+        }
+
+    #content th, td {
+        padding: 30px;
+    }
+
+@media (max-width: 1000px) {
+    #side-menu {
+        display: none;
+    }
+}
+
+.submit-button {
+    background-color: red;
+    border: none;
+    width: 160px;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 800;
+    font-size: 15px;
+    margin: 5px
+}
+
+.discard-button {
+    background-color: black;
+    border: none;
+    width: 160px;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 800;
+    font-size: 15px;
+    margin: 5px
+}
+
+.attention-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.attention-form input{
+    margin: 10px
+}
+
+#side-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+    border-right: 3px solid red;
+}
+
+    #side-menu a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+.side-menu-pos {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.action-button {
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 800;
+    font-size: 15px
+}
+
+#survey{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: auto;
+}
+
+.question-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin: 10px;
+    border: 3px solid red;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.answer{
+    margin: 3px;
+    width: 100%;
+}
+
+.question-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.survey-field{
+    margin: 10px;
+}
+
+.survey-control{
+    width: 160px;
+    height: 30px;
+}
+
+.options{
+    display: flex;
+    flex-direction: column;
+}
+
+.options p{
+    width: 250px;
+}
+
+#questions-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.answer-field{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin: 10px;
+}
