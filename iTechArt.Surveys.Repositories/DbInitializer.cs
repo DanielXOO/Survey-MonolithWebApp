@@ -20,73 +20,17 @@ namespace iTechArt.Surveys.Repositories
             {
                 new InitUser()
                 {
-                    DisplayName = "Admin1",
+                    DisplayName = "Admin",
                     Password = "Admin123",
                     RoleNames = new[]{ RoleNames.Admin },
-                    UserName = "Admin1"
+                    UserName = "Admin"
                 },
                 new InitUser()
                 {
-                    DisplayName = "User2",
-                    Password = "User123",
+                    DisplayName = "User",
+                    Password = "User1234",
                     RoleNames = new[]{ RoleNames.User },
-                    UserName = "User2"
-                },
-                new InitUser()
-                {
-                    DisplayName = "User3",
-                    Password = "User123",
-                    RoleNames = new[]{ RoleNames.User },
-                    UserName = "User3"
-                },
-                new InitUser()
-                {
-                    DisplayName = "User4",
-                    Password = "User123",
-                    RoleNames = new[]{ RoleNames.User },
-                    UserName = "User4"
-                },
-                new InitUser()
-                {
-                    DisplayName = "User5",
-                    Password = "User123",
-                    RoleNames = new[]{ RoleNames.User },
-                    UserName = "User5"
-                },
-                new InitUser()
-                {
-                    DisplayName = "User6",
-                    Password = "User123",
-                    RoleNames = new[]{ RoleNames.User },
-                    UserName = "User6"
-                },
-                new InitUser()
-                {
-                    DisplayName = "User7",
-                    Password = "User123",
-                    RoleNames = new[]{ RoleNames.User },
-                    UserName = "User7"
-                },
-                new InitUser()
-                {
-                    DisplayName = "User8",
-                    Password = "User123",
-                    RoleNames = new[]{ RoleNames.User },
-                    UserName = "User8"
-                },
-                new InitUser()
-                {
-                    DisplayName = "User9",
-                    Password = "User123",
-                    RoleNames = new[]{ RoleNames.User },
-                    UserName = "User9"
-                },
-                new InitUser()
-                {
-                    DisplayName = "User10",
-                    Password = "User123",
-                    RoleNames = new[]{ RoleNames.User },
-                    UserName = "User10"
+                    UserName = "User"
                 }
             };
 

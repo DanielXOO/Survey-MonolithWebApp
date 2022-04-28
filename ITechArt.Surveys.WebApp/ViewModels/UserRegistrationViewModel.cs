@@ -12,6 +12,7 @@ namespace iTechArt.Surveys.WebApp.ViewModels
 
         [Required(ErrorMessage = "Password cannot be empty")]
         [MinLength(8, ErrorMessage = "Password is too short")]
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$", ErrorMessage ="Add digits and uppercase letters")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Repeat password")]
